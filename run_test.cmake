@@ -11,7 +11,7 @@
 #           [-D "args=<some args...>"]
 #
 #           #you must specify at least 1, if ${input_file} is defined ${input} will be ignored
-#           [-D "input=<some input ...>"] or [-D "input=<path to input file>"]
+#           [-D "input=<some input ...>"] or [-D "input_file=<path to input file>"]
 #
 #           #you must specify at least 1, if ${result} is defined ${result_file} will be ignored
 #           [-D "result=<some output...>"] or [-D "result_file=<path to result file>"]

@@ -2,6 +2,7 @@
 // Created by NelosG.
 //
 #include <iostream>
+#include <valarray>
 
 static void printPrimes(int currentValue) {
     double sqrt = std::sqrt(currentValue);

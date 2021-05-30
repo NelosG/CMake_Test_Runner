@@ -5,6 +5,22 @@ project(example)
 
 set(CMAKE_CXX_STANDARD 17)
 
+if(EXISTS "${CMAKE_BINARY_DIR}/test_runner/run_test.cmake")
+    execute_process(COMMAND git pull
+            RESULT_VARIABLE result
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test_runner)
+else()
+    execute_process(COMMAND git clone --sparse https://github.com/NelosG/CMake_Test_Runner.git test_runner
+            RESULT_VARIABLE result
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
+
+if(result)
+    message(FATAL_ERROR "CMake step for test_runner failed: ${result}")
+endif()
+
+set(path_to_test_runner "${CMAKE_BINARY_DIR}/test_runner/run_test.cmake")
+
 
 add_executable(A A.cpp)
 set(JAVA_SOURCE B.java)
@@ -25,8 +41,6 @@ set(test_java "${Java_JAVA_EXECUTABLE} -cp ${_jarFile}")
 
 #example
 enable_testing()
-
-set(path_to_test_runner ${CMAKE_SOURCE_DIR}/../run_test.cmake)
 
 add_test(TestA
         ${CMAKE_COMMAND}
